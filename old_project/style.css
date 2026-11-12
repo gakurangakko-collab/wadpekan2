@@ -1,0 +1,65 @@
+body {
+    background-color: #f4f6f9;
+    color: #333333;
+}
+
+.custom-card-box {
+    padding: 20px 24px;
+    border: 2px solid #3b82f6;
+    margin: 20px 0 25px 0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+}
+
+.custom-highlight-notice {
+    padding: 14px 18px;
+    border: 1px dashed #f59e0b;
+    margin: 15px 0;
+    border-radius: 8px;
+    background-color: #fffbeb;
+    color: #92400e;
+}
+
+.penghuni-avatar {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #e2e8f0;
+}
+
+.card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.table tbody td {
+    font-size: 0.92rem;
+    vertical-align: middle;
+}
