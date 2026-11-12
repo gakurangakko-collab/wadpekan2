@@ -17,5 +17,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'admin',
             ]
         );
+
+        User::updateOrCreate(
+            ['username' => 'pengelola'],
+            [
+                'password' => Hash::make('pengelola123'),
+                'role' => 'pengelola',
+            ]
+        );
     }
 }

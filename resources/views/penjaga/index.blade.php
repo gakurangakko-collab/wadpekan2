@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul Housekeeper - Sistem Manajemen Kos & Properti</title>
+    <title>Modul Housekeeper - Sistem Manajemen Kos &amp; Properti</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -35,13 +35,19 @@
             Sistem Manajemen Kos &amp; Properti
         </a>
 
-        <ul class="navbar-nav ms-auto flex-row">
+        <ul class="navbar-nav ms-auto flex-row gap-3 align-items-center">
+            @can('kelola-pengguna')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pengguna.index') }}">Kelola Pengguna</a>
+                </li>
+            @endcan
+
             @auth
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="nav-link btn btn-link">
-                            Logout ({{ Auth::user()->username }})
+                            Logout ({{ Auth::user()->username }} - {{ Auth::user()->role }})
                         </button>
                     </form>
                 </li>
@@ -92,21 +98,25 @@
                             @auth
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a href="{{ route('penjaga.edit', $item) }}"
-                                           class="btn btn-warning btn-sm">
-                                            Edit
-                                        </a>
+                                        @can('update', $item)
+                                            <a href="{{ route('penjaga.edit', $item) }}"
+                                               class="btn btn-warning btn-sm">
+                                                Edit
+                                            </a>
+                                        @endcan
 
-                                        <form action="{{ route('penjaga.destroy', $item) }}"
-                                              method="POST"
-                                              onsubmit="return confirm('Yakin ingin menghapus data penjaga ini?')">
-                                            @csrf
-                                            @method('DELETE')
+                                        @can('delete', $item)
+                                            <form action="{{ route('penjaga.destroy', $item) }}"
+                                                  method="POST"
+                                                  onsubmit="return confirm('Yakin ingin menghapus data penjaga ini?')">
+                                                @csrf
+                                                @method('DELETE')
 
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                Hapus
-                                            </button>
-                                        </form>
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        @endcan
                                     </div>
                                 </td>
                             @endauth
@@ -122,13 +132,13 @@
             </table>
         </div>
 
-        @auth
+        @can('create', \App\Models\Penjaga::class)
             <div class="text-end mt-3 mb-5">
                 <a href="{{ route('penjaga.create') }}" class="btn btn-primary">
                     Tambah Penjaga
                 </a>
             </div>
-        @endauth
+        @endcan
     </div>
 </body>
 </html>
